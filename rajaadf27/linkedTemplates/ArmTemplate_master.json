@@ -1,0 +1,132 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "rajaadf27"
+		},
+		"Adlsgen2_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'Adlsgen2'"
+		},
+		"Ls_azuresqldb_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'Ls_azuresqldb'"
+		},
+		"OnpremLS_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'OnpremLS'"
+		},
+		"Adlsgen2_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://rajastg.dfs.core.windows.net/"
+		},
+		"LS_api_cal_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://raw.githubusercontent.com/"
+		},
+		"Ls_azuresqldb_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "nikhilrajserver123.database.windows.net"
+		},
+		"Ls_azuresqldb_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "nikhilrajdb"
+		},
+		"Ls_azuresqldb_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "nikhilraj"
+		},
+		"OnpremLS_properties_typeProperties_host": {
+			"type": "string",
+			"defaultValue": "C:\\ADFProject"
+		},
+		"OnpremLS_properties_typeProperties_userId": {
+			"type": "string",
+			"defaultValue": "revanth"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "rajaadf27_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"Adlsgen2_accountKey": {
+						"value": "[parameters('Adlsgen2_accountKey')]"
+					},
+					"Ls_azuresqldb_password": {
+						"value": "[parameters('Ls_azuresqldb_password')]"
+					},
+					"OnpremLS_password": {
+						"value": "[parameters('OnpremLS_password')]"
+					},
+					"Adlsgen2_properties_typeProperties_url": {
+						"value": "[parameters('Adlsgen2_properties_typeProperties_url')]"
+					},
+					"LS_api_cal_properties_typeProperties_url": {
+						"value": "[parameters('LS_api_cal_properties_typeProperties_url')]"
+					},
+					"Ls_azuresqldb_properties_typeProperties_server": {
+						"value": "[parameters('Ls_azuresqldb_properties_typeProperties_server')]"
+					},
+					"Ls_azuresqldb_properties_typeProperties_database": {
+						"value": "[parameters('Ls_azuresqldb_properties_typeProperties_database')]"
+					},
+					"Ls_azuresqldb_properties_typeProperties_userName": {
+						"value": "[parameters('Ls_azuresqldb_properties_typeProperties_userName')]"
+					},
+					"OnpremLS_properties_typeProperties_host": {
+						"value": "[parameters('OnpremLS_properties_typeProperties_host')]"
+					},
+					"OnpremLS_properties_typeProperties_userId": {
+						"value": "[parameters('OnpremLS_properties_typeProperties_userId')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "rajaadf27_ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'rajaadf27_ArmTemplate_0')]"
+			]
+		}
+	]
+}
