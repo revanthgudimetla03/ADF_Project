@@ -1,0 +1,15 @@
+{
+	"name": "rajaadf27",
+	"properties": {
+		"trustModeClaimForMi": {
+			"value": "Disabled",
+			"editable": true
+		}
+	},
+	"location": "australiaeast",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "b42a037f-8a1f-45a6-b28f-3f347ea670f7",
+		"tenantId": "1ebc7815-dc66-412d-9389-a07d71bdf17e"
+	}
+}
